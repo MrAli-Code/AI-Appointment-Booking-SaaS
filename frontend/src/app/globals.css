@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 250 95% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 250 95% 96%;
+    --accent-foreground: 250 95% 40%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 250 95% 60%;
+    --radius: 1rem;
+    --sidebar: 250 95% 98%;
+    --sidebar-foreground: 250 10% 30%;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    --gradient-6: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    --shadow-glass: 0 8px 32px rgba(102, 126, 234, 0.15);
+    --shadow-colored: 0 4px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .dark {
+    --background: 250 30% 8%;
+    --foreground: 210 40% 98%;
+    --card: 250 30% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 250 30% 12%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 250 95% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 250 30% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 250 30% 18%;
+    --muted-foreground: 250 20% 65%;
+    --accent: 250 95% 25%;
+    --accent-foreground: 250 95% 90%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 250 30% 20%;
+    --input: 250 30% 20%;
+    --ring: 250 95% 65%;
+    --sidebar: 250 30% 10%;
+    --sidebar-foreground: 250 20% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .dark .glass {
+    background: rgba(15, 10, 30, 0.7);
+    border: 1px solid rgba(102, 126, 234, 0.15);
+  }
+  .glass-card {
+    @apply glass rounded-2xl shadow-lg;
+    box-shadow: var(--shadow-glass);
+  }
+  .gradient-border {
+    position: relative;
+    border-radius: var(--radius);
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(var(--radius) + 2px);
+    background: var(--gradient-1);
+    z-index: -1;
+    opacity: 0.5;
+  }
+  .gradient-text {
+    background: var(--gradient-3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-primary {
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .btn-gradient {
+    background: var(--gradient-1);
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-colored);
+  }
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+  }
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glass);
+  }
+}
+
+[dir="rtl"] {
+  text-align: right;
+  font-family: var(--font-vazir), system-ui, sans-serif;
+}
+[dir="rtl"] .ltr-force {
+  text-align: left;
+}
+[dir="ltr"] {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.animate-in {
+  animation: fadeInUp 0.4s ease-out;
+}
+.animate-in-delay-1 { animation-delay: 0.1s; }
+.animate-in-delay-2 { animation-delay: 0.2s; }
+.animate-in-delay-3 { animation-delay: 0.3s; }
+.animate-in-delay-4 { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-message-enter {
+  animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-15px) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.typing-dot {
+  animation: typingDot 1.4s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(102, 126, 234, 0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
+}

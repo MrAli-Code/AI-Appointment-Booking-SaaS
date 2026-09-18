@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ai-booking-config
+  namespace: ai-booking
+data:
+  APP_NAME: "AI Booking SaaS"
+  ENV: "production"
+  POSTGRES_HOST: "postgres-service"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "ai_booking"
+  REDIS_URL: "redis://redis-service:6379/0"
+  RABBITMQ_URL: "amqp://guest:guest@rabbitmq-service:5672/"
+  JWT_ALGORITHM: "HS256"
+  JWT_EXPIRY_MINUTES: "1440"
+  CORS_ORIGINS: "https://app.yourdomain.com"
